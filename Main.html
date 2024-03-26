@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html >
+  <style>
+    #Container{
+      border-style: solid;
+      border-width: .5rem;
+      display: grid;
+      grid-template-rows: 200px 100px 100px 100px 100px 100px;
+      grid-template-columns: 400px auto auto;
+      border-color: black;
+    }
+    #Screen{
+      grid-column: 1/4;
+      background-color: white;
+      border: .5rem;
+      border-color: gray;
+      border-style: solid;
+      font-size: 8rem;
+    }
+    #tile{ 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-style: solid;
+      border-color:black
+    }
+  </style>
+<body id="Document">
+  <h1 style="display:flex; justify-content:center;">Calcululator</h1>
+  <div id="Container">
+    <div id="Screen"></div>
+    <div id="tile">1</div>
+    <div id="tile">2</div>
+    <div id="tile">3</div>
+    <div id="tile">4</div>
+    <div id="tile">5</div>
+    <div id="tile">6</div>
+    <div id="tile">7</div>
+    <div id="tile">8</div>
+    <div id="tile">9</div>
+    <div id="tile">+</div>
+    <div id="tile">-</div>
+    <div id="tile">÷</div>
+    <div id="tile">%</div>
+    <div id="tile">Clear</div>
+    <div id="tile">Enter</div>
+
+  </div>
+</body>
+<script>
+  screen=document.getElementById("Screen")
+  tile=document.querySelectorAll("#tile")
+  for(let i=0;i<tile.length;i++){
+    tile[i].addEventListener("click",()=>{
+      switch(tile[i].innerText){
+        case "Clear":
+          screen.innerText=""
+          break
+        case"Enter":
+          ScreenInput=screen.innerText.replace("÷","/")
+          screen.innerText=eval(ScreenInput)
+          break
+        default:
+          if(screen.innerText.length==20){
+            alert("Max Input Reached! Please Clear.")
+          }else{
+            screen.innerText+=tile[i].innerText
+          }
+          break
+      }
+    })
+  }
+</script>
+</html>
